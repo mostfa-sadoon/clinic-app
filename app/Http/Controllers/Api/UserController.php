@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Http\Requests\Api\UserRegister;
 
 class UserController extends Controller
 {
@@ -14,9 +15,8 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function Register(Request $request){
-
-        $this->userService->regiser($request->all());
+    public function Register(UserRegister $request){
+       return $this->userService->register($request->all()); 
     }
 
     public function login(Request $request){

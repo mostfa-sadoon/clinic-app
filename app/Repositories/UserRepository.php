@@ -1,6 +1,7 @@
 <?php
 
 namespace  App\Repositories;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface{
@@ -14,10 +15,10 @@ class UserRepository implements UserRepositoryInterface{
     }
 
     public function create($data){
-
+        return  User::create($data);
     }
 
-    public function update($data){
+    public function update($id,$data){
 
     }
 
