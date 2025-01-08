@@ -1,16 +1,18 @@
 <?php
 
 namespace  App\Repositories;
-use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface{
 
-    public function getAllUsers(){
+   public $unSearchable=['password'];
+
+    public function getUsers(){
 
     }
 
-    public function findUserById($id){
+    public function findId($id){
 
     }
 
@@ -19,15 +21,23 @@ class UserRepository implements UserRepositoryInterface{
     }
 
     public function update($id,$data){
-
+        return  User::where('id',$id)->update($data);
     }
 
     public function delete($id){
 
     }
 
-    public function search($data){
-
+    public function search($search){
+        $query = User::query();
+        if (count($search)) {
+            foreach($search as $key => $value) {
+                if (!in_array($key, $this->unSearchable)) {
+                    $query->where($key, $value);
+                }
+            }
+        }
+        return $query;
     }
 
     public function IsPhoneUnique(){

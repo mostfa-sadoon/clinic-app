@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\{UserController};
+use App\Http\Controllers\Api\{UserController,AuthController};
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,6 +11,18 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(UserController::class)->group(function () {
   
-    Route::post('register','register')->name('bills');
+    Route::post('register','register');
+
+});
+
+Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
+    
+
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('login','login');
+        Route::post('logout','logout');
+        Route::post('send/otp','sendOtp');
+        Route::post('/forget/change/password','forgotPassword');
+    });
 
 });
