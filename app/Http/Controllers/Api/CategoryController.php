@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function index(){
         $categories =  $this->categoryRepository->getAll()->paginate(20);
-        return $this->response(200,'تم تسجيل الدخول بنجاح',['categories'=>$categories]);
+        return $this->response(200,'تم  ارجاع البيانات بنجاح',['categories'=>$categories]);
     }
 
     
