@@ -8,11 +8,11 @@ class UserRepository implements UserRepositoryInterface{
 
    public $unSearchable=['password'];
 
-    public function getUsers(){
+    public function getAll(){
 
     }
 
-    public function findId($id){
+    public function findById($id){
 
     }
 
